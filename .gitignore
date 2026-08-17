@@ -1,0 +1,21 @@
+# Salesforce DX local files (org auth, scratch org config)
+.sf/
+.sfdx/
+.localdevserver
+
+# Credentials — never commit these
+ORG_CREDENTIALS.md
+*.env
+.env
+.env.*
+*auth*url*
+*.key
+*.pem
+secrets/
+
+# OS / editor
+.DS_Store
+.vscode/**/!(extensions.json)
+
+# Dependencies
+node_modules/
