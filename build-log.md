@@ -51,4 +51,7 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
    - Choose the Customer Portal template
 
 3. **Upload images**
-   - Upload all images the site will use into the asset file before building out pages, so they're available when adding them to components later.
+   - App Launcher → Files
+   - Go to the Asset Library
+   - Click "Upload Files" — supports multi-select, so upload all images in one batch instead of one at a time
+   - Do this before building out pages, so images are already available when adding them to components later.
