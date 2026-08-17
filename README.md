@@ -15,8 +15,9 @@ _TBD — Vina to specify which pages go in the site._
 - [ ]
 
 ## Org details
-Credentials are **not** stored in this file. See `ORG_CREDENTIALS.md` — it's gitignored, local-only, never pushed to GitHub.
+Credentials are **not** stored in this file. They live in `.env` (gitignored, local-only, never pushed). `.env.example` is tracked and shows which keys are needed — copy it to `.env` and fill in real values.
 
 ## Files
 - [build-log.md](build-log.md) — step-by-step build log, updated as we go
-- `ORG_CREDENTIALS.md` — org login details, local-only (gitignored)
+- `.env.example` — template of required keys (tracked, no real values)
+- `.env` — actual org credentials, local-only (gitignored)

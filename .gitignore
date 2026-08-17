@@ -4,10 +4,10 @@
 .localdevserver
 
 # Credentials — never commit these
-ORG_CREDENTIALS.md
 *.env
 .env
 .env.*
+!.env.example
 *auth*url*
 *.key
 *.pem
