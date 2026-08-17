@@ -37,3 +37,18 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 
 - New Agentforce Developer Edition org is live. Login domain saved to local `.env` (not in this file — gitignored on purpose).
 - Next: enable Data Cloud on this org, then Einstein Generative AI, then Agentforce, per the setup order confirmed above. Then start on the Home page.
+
+## 2026-08-17 — Digital Experiences setup steps
+
+1. **Enable Digital Experiences**
+   - Setup → Quick Find → type "Digital Experiences"
+   - Open Digital Experiences settings
+   - Check the "Enable Digital Experiences" checkbox
+
+2. **Create the site**
+   - Go to All Sites
+   - Click "New"
+   - Choose the Customer Portal template
+
+3. **Upload images**
+   - Upload all images the site will use into the asset file before building out pages, so they're available when adding them to components later.
