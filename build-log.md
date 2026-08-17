@@ -55,3 +55,9 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
    - Go to the Asset Library
    - Click "Upload Files" — supports multi-select, so upload all images in one batch instead of one at a time
    - Do this before building out pages, so images are already available when adding them to components later.
+
+4. **Open Experience Builder and set the theme**
+   - Setup → Digital Experiences → All Sites
+   - Click "Builder" on the portfolio site (goes directly into Experience Builder since the site already exists)
+   - In Builder, go to the Theme panel
+   - Select the **Cypress** theme
