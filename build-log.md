@@ -32,3 +32,8 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 - Free tier: 150 LLM requests/hour. Fine for a portfolio demo. No paid add-ons needed.
 - Full research notes: `references/research/haiku/2026-08-17-salesforce-agentforce-free-org-requirements.md` (in the EGG EA repo).
 - Next: Vina to sign up for the Agentforce Developer Edition, save credentials to `.env`, then start building — Home page first.
+
+## 2026-08-17 — Org created
+
+- New Agentforce Developer Edition org is live. Login domain saved to local `.env` (not in this file — gitignored on purpose).
+- Next: enable Data Cloud on this org, then Einstein Generative AI, then Agentforce, per the setup order confirmed above. Then start on the Home page.
