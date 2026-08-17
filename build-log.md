@@ -22,3 +22,13 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 - 4 pages: Home (with Contact Me button) → About Me → Certifications (carousel) → Contact Me (embeds a Flow; submitting creates a Lead in Salesforce CRM).
 - Plus a site-wide Agentforce agent, grounded on Knowledge Articles / Data Cloud data built from Vina's CV + background info, with guardrails configured.
 - Open question flagged: does a standard free Developer Edition support Data Cloud + Agentforce, or is an Agentforce-specific trial org needed? Need to confirm before creating the new org, since this decides which signup path to use. Researching this now.
+
+## 2026-08-17 — Org type confirmed: Agentforce Developer Edition
+
+- Answer: a standard free Developer Edition does **not** support Data Cloud or Agentforce. Must sign up for the **Agentforce Developer Edition** specifically — a plain Developer Edition can't be retrofitted.
+- Signup: https://developer.salesforce.com/free-trials → select the Agentforce Developer Edition option. Free, non-expiring as long as you log in regularly.
+- Data Cloud is a hard requirement for grounding an agent on Knowledge Articles — not optional.
+- Setup order matters: **enable Data Cloud → Einstein Generative AI → Agentforce**, in that sequence.
+- Free tier: 150 LLM requests/hour. Fine for a portfolio demo. No paid add-ons needed.
+- Full research notes: `references/research/haiku/2026-08-17-salesforce-agentforce-free-org-requirements.md` (in the EGG EA repo).
+- Next: Vina to sign up for the Agentforce Developer Edition, save credentials to `.env`, then start building — Home page first.
