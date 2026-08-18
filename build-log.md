@@ -75,3 +75,8 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 4. Repeat for each page
 
 - All 5 pages created this way: Home, About Me, Certifications & Superbadges, Projects, Contact Me.
+
+## 2026-08-18 — Header navigation
+
+- Adding all pages to the default header navigation so they show across the top of the site.
+- Note: Vina mentioned setting the header to show 6 pages, but only 5 are defined (Home, About Me, Certifications & Superbadges, Projects, Contact Me) — flagged, unconfirmed whether there's a 6th page/nav item.
