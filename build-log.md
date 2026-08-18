@@ -83,5 +83,4 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 
 ## 2026-08-18 — Footer navigation tile
 
-- Setting up the default navigation menu in the footer tile area to show pages as tiles.
-- Vina said this shows "four pages" — one fewer than the 5-page site. Unconfirmed which page is left out of the footer (Home is the most likely candidate to exclude, since it's usually reachable via the logo, but not confirmed).
+- Tile navigation lives on the Home/landing page itself, linking out to the other 4 pages: About Me, Certifications & Superbadges, Projects, Contact Me. Home isn't shown as a tile since you're already on it.
