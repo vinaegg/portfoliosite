@@ -97,3 +97,16 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 - First attempt showed "site can't be reached" in the browser (likely a redirect/localhost-callback hiccup); re-running the exact same command succeeded on the next try.
 - Org now saved locally under alias **portfolio**, status Connected. Verify anytime with `sf org list`.
 - This unlocks pulling real site metadata into this repo with `sf project retrieve` — actual config files, not just narrated notes. Still need to scaffold a minimal SFDX project (`sfdx-project.json` + manifest) before that command will work — next step.
+
+## 2026-08-18 — Contact Me Flow (decision + how-to)
+
+**Decision: Flow over Web-to-Lead.** Web-to-Lead is legacy, spam-prone without reCAPTCHA, and sits awkwardly as a bolted-on HTML form inside Experience Builder. Flow is native to the Builder page, fully stylable, extensible later (e.g. toward Agentforce), and demonstrates actual Flow Builder skill — more relevant for a portfolio than a legacy form.
+
+**How to build it:**
+1. Setup → Quick Find → "Flows" → New Flow → **Screen Flow**
+2. Build a Screen with input components: First Name (Text), Last Name (Text, required), Email (Email component, required), Company (Text, required — Lead object requires Company on every record), Phone (Text, optional), Message (Long Text Area, optional → maps to Lead Description)
+3. Add a **Create Records** element after the screen: Object = Lead, manually map each field to the matching screen component value
+4. Add a second Screen after that as a confirmation ("Thanks for reaching out — I'll get back to you soon.")
+5. Save (e.g. "Portfolio Site - Contact Me") and **Activate** — inactive flows don't show up in Experience Builder's component list
+6. **Critical gotcha:** the site is public, so visitors hit it as **Guest User**. The Guest User profile needs Create access to Lead (and edit access on the fields being set), or the flow works fine when testing as yourself but silently fails for every real visitor. Setup → Digital Experiences → All Sites → site → Public Access Settings → Object Settings → Leads → enable Create.
+7. Experience Builder → Contact Me page → drag the **Flow** component onto the page → select this flow → Publish.
