@@ -90,3 +90,10 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 
 - By default, the Cypress theme header has a solid white background, so it pushes page content down instead of floating over it.
 - Fix: select the header region in Builder → change the header background opacity (lower it / make transparent) → this turns the header into an overlay that sits on top of the page content instead of a solid bar above it.
+
+## 2026-08-18 — Salesforce CLI authenticated
+
+- `sf org login web --alias portfolio --instance-url <SF_MY_DOMAIN>` — browser-based login, no credentials typed into the terminal.
+- First attempt showed "site can't be reached" in the browser (likely a redirect/localhost-callback hiccup); re-running the exact same command succeeded on the next try.
+- Org now saved locally under alias **portfolio**, status Connected. Verify anytime with `sf org list`.
+- This unlocks pulling real site metadata into this repo with `sf project retrieve` — actual config files, not just narrated notes. Still need to scaffold a minimal SFDX project (`sfdx-project.json` + manifest) before that command will work — next step.
