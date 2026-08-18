@@ -66,3 +66,12 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 
 - Page 3 clarified: "Certifications" also includes Trailhead superbadges, not just certifications.
 - New page added: **Projects** — showcase of built projects. Sits between Certifications and Contact Me. Site is now 5 pages total (Home, About Me, Certifications & Superbadges, Projects, Contact Me).
+
+## 2026-08-18 — Creating pages in Experience Builder
+
+1. In Builder, left-hand sidebar → **Add new page**
+2. Choose **New Blank Page**
+3. Choose **Flexible layout**
+4. Repeat for each page
+
+- All 5 pages created this way: Home, About Me, Certifications & Superbadges, Projects, Contact Me.
