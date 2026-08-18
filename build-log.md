@@ -61,3 +61,8 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
    - Click "Builder" on the portfolio site (goes directly into Experience Builder since the site already exists)
    - In Builder, go to the Theme panel
    - Select the **Cypress** theme
+
+## 2026-08-18 — Added Projects page, clarified Certifications page
+
+- Page 3 clarified: "Certifications" also includes Trailhead superbadges, not just certifications.
+- New page added: **Projects** — showcase of built projects. Sits between Certifications and Contact Me. Site is now 5 pages total (Home, About Me, Certifications & Superbadges, Projects, Contact Me).

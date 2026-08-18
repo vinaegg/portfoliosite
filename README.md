@@ -10,13 +10,14 @@ Original build was in a Salesforce Developer Free Edition org. Lost login access
 ## Pages
 1. **Home** — landing page with a "Contact Me" button that links to the Contact page
 2. **About Me** — bio/background
-3. **Certifications** — carousel component showing all certifications
-4. **Contact Me** — embeds a Flow; submitting the Flow creates a Lead record in Salesforce CRM
+3. **Certifications & Superbadges** — carousel component showing all certifications and Trailhead superbadges
+4. **Projects** — showcase of built projects
+5. **Contact Me** — embeds a Flow; submitting the Flow creates a Lead record in Salesforce CRM
 
 ## Agentforce agent (not a page — a site-wide feature)
 - An Agentforce agent grounded on Knowledge Articles / Data Cloud data built from Vina's CV and background info
 - Guardrails configured on the agent (topics/scope it should stay within)
-- Needs research: whether a standard free Developer Edition org supports Data Cloud + Agentforce, or whether an Agentforce-specific trial org is needed instead — check before creating the new org
+- Org confirmed: needs the Agentforce Developer Edition specifically (see build-log.md, 2026-08-17)
 
 ## Org details
 Credentials are **not** stored in this file. They live in `.env` (gitignored, local-only, never pushed). `.env.example` is tracked and shows which keys are needed — copy it to `.env` and fill in real values.
