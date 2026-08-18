@@ -84,3 +84,4 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 ## 2026-08-18 — Footer navigation tile
 
 - Tile navigation lives on the Home/landing page itself, linking out to the other 4 pages: About Me, Certifications & Superbadges, Projects, Contact Me. Home isn't shown as a tile since you're already on it.
+- Added an image to each of the 4 tiles, pulled from the images already uploaded to the Asset Library.
