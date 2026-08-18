@@ -78,5 +78,10 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
 
 ## 2026-08-18 — Header navigation
 
-- Adding all pages to the default header navigation so they show across the top of the site.
-- Note: Vina mentioned setting the header to show 6 pages, but only 5 are defined (Home, About Me, Certifications & Superbadges, Projects, Contact Me) — flagged, unconfirmed whether there's a 6th page/nav item.
+- Added all 5 pages to the default header navigation menu so they show across the top of the site: Home, About Me, Certifications & Superbadges, Projects, Contact Me.
+- Confirmed: no 6th page — the earlier "6" was a slip, 5 is correct.
+
+## 2026-08-18 — Footer navigation tile
+
+- Setting up the default navigation menu in the footer tile area to show pages as tiles.
+- Vina said this shows "four pages" — one fewer than the 5-page site. Unconfirmed which page is left out of the footer (Home is the most likely candidate to exclude, since it's usually reachable via the logo, but not confirmed).
