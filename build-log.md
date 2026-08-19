@@ -177,4 +177,5 @@ With the flow now rendering and Lead creation working, both Send Email actions s
   1. System Administrator profile → enabled/unhid **CMS Workspaces** and **CMS Channels** so they're accessible (not visible by default)
   2. Also enabled the **Digital Experiences Home** tab
   3. In the CMS Workspace, created two separate content folders/sets — one for **Superbadges**, one for **Certifications** — and uploaded all the badge images into each, then **Published**
-  - Next: going back to Digital Experience → Content Management to continue — more steps to follow.
+  4. Digital Experience → **Content Management** → **Collections** → **Create Collection** → named it (e.g. "Superbadges") → selected all the relevant CMS image content items to include in that collection
+  - Repeat for a separate "Certifications" collection. More steps to follow (connecting collection to a Channel, then dropping the CMS Collection component into Builder).
