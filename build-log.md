@@ -178,4 +178,5 @@ With the flow now rendering and Lead creation working, both Send Email actions s
   2. Also enabled the **Digital Experiences Home** tab
   3. In the CMS Workspace, created two separate content folders/sets — one for **Superbadges**, one for **Certifications** — and uploaded all the badge images into each, then **Published**
   4. Digital Experience → **Content Management** → **Collections** → **Create Collection** → named it (e.g. "Superbadges") → selected all the relevant CMS image content items to include in that collection
-  - Repeat for a separate "Certifications" collection. More steps to follow (connecting collection to a Channel, then dropping the CMS Collection component into Builder).
+  - Repeat for a separate "Certifications" collection.
+  5. Back in Experience Builder → **Certifications & Superbadges** page → laid out **two columns** → drag-and-dropped a **CMS Collection** component into each column, one pointed at the Superbadges collection, one at the Certifications collection (set to slider/carousel display) — no manual Channel-linking step needed, just direct drag-and-drop selection of the collection.
