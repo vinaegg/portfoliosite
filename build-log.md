@@ -180,3 +180,6 @@ With the flow now rendering and Lead creation working, both Send Email actions s
   4. Digital Experience → **Content Management** → **Collections** → **Create Collection** → named it (e.g. "Superbadges") → selected all the relevant CMS image content items to include in that collection
   - Repeat for a separate "Certifications" collection.
   5. Back in Experience Builder → **Certifications & Superbadges** page → laid out **two columns** → drag-and-dropped a **CMS Collection** component into each column, one pointed at the Superbadges collection, one at the Certifications collection (set to slider/carousel display) — no manual Channel-linking step needed, just direct drag-and-drop selection of the collection.
+  - Content mapping per slide: image = Source, badge/cert name = Title (Headline field on the CMS content item). That's all that's needed for a slide to render — no other fields required.
+  - Component has its own display settings in the Builder properties panel (independent of the CMS content itself): number of slides shown at once, autoplay/transition timing, etc. — adjust to taste.
+- **Confirmed working end-to-end.**
