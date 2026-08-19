@@ -159,3 +159,13 @@ With the flow now rendering and Lead creation working, both Send Email actions s
 **CLI note for future debugging:** `sf project retrieve start -m "Flow:ContactForm"` does not reliably pull whichever version is currently Active — it kept returning stale/empty values even after the live site was confirmed working via real end-to-end testing. Trust actual behavior (real test submissions, real emails arriving) over this retrieve command when the two disagree. The CLI retrieve was still genuinely useful for the earlier diagnosis (finding the empty recipient/missing sender fields no screenshot had surfaced) — just don't rely on it as a final confirmation step.
 
 **End state: Contact Me flow fully working** — guest can access the page, submit the form, a Lead is created, and both the guest confirmation email and the internal notification email arrive.
+
+## 2026-08-19 — Domain rename: in progress
+
+- Changed My Domain (Setup → My Domain) from `orgfarm-a6430190d2-dev-ed` to **`vinaegg-dev-ed`**. Updated in `.env` (`SF_MY_DOMAIN`). CLI needs re-auth against the new domain — run manually in Terminal (background/non-interactive attempts timed out, needs live browser interaction):
+  ```
+  cd "/Users/vinaegg/Documents/AI Projects/Salesforce Experience Portfolio Site"
+  sf org login web --alias portfolio --instance-url https://vinaegg-dev-ed.develop.my.salesforce.com --set-default
+  ```
+- **Important distinction learned:** changing My Domain only updates the Salesforce *login* URL (`.my.salesforce.com`). The published Experience Cloud site's public URL (`.my.site.com`) is separate and does NOT update automatically — as of this session it was still showing the old `orgfarm-a6430190d2-dev-ed...my.site.com` domain after the My Domain rename.
+- Next: check Setup → Quick Find → **"Domains"** (plural, different page from "My Domain") for a new entry matching the new name — may need manual **Activate**, and provisioning can reportedly take several hours. Not yet confirmed working — pick this up next session.
