@@ -176,4 +176,5 @@ With the flow now rendering and Lead creation working, both Send Email actions s
 - Steps so far (in progress):
   1. System Administrator profile → enabled/unhid **CMS Workspaces** and **CMS Channels** so they're accessible (not visible by default)
   2. Also enabled the **Digital Experiences Home** tab
-  - More steps to follow as this gets built out.
+  3. In the CMS Workspace, created two separate content folders/sets — one for **Superbadges**, one for **Certifications** — and uploaded all the badge images into each, then **Published**
+  - Next: going back to Digital Experience → Content Management to continue — more steps to follow.
