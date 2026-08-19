@@ -183,3 +183,10 @@ With the flow now rendering and Lead creation working, both Send Email actions s
   - Content mapping per slide: image = Source, badge/cert name = Title (Headline field on the CMS content item). That's all that's needed for a slide to render — no other fields required.
   - Component has its own display settings in the Builder properties panel (independent of the CMS content itself): number of slides shown at once, autoplay/transition timing, etc. — adjust to taste.
 - **Confirmed working end-to-end.**
+
+## 2026-08-19 — Session wrap-up / status
+
+**Pages done (3 of 5):** Home, Contact Me (Flow + email working end-to-end), Certifications & Superbadges (CMS carousel).
+**Pages remaining:** About Me, Projects.
+**Next session:** add Agentforce as a chat/omnichannel widget on the site, grounded on Vina's CV + basic info (Knowledge Articles / Data Cloud, per the earlier org-type research), with guardrails configured. This is the last major feature from the original scope — see README.md "Agentforce agent" section.
+**Also still open:** domain rename propagation (see 2026-08-19 "Domain rename: in progress" entry above) — check Setup → Domains for activation status when picking this back up.
