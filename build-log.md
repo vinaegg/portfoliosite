@@ -137,3 +137,25 @@ Append-only. Every setup step, config choice, and gotcha goes here as we go — 
     3. Save
     4. Go to the Guest User Profile (reachable via Setup → Users → find the Site Guest User → open its Profile) → **Enabled Flow Access** → Edit — ContactForm now appears as available → add it → Save
   - Confirmed working after this — flow now renders for guests.
+
+## 2026-08-19 — Email delivery saga: full resolution
+
+With the flow now rendering and Lead creation working, both Send Email actions still weren't reliably delivering. Multiple layered issues, in the order they were found:
+
+1. **"Insufficient privileges" when testing via Flow Builder's Run/Debug button.** Side effect of the "Edit Access → Override default behavior" fix above — once a flow is restricted to an explicit allow-list, only the profiles on that list can run it, including for admin testing. Fix: add your own profile (System Administrator) to the same Edit Access allow-list alongside the Guest Profile.
+
+2. **Testing kept hitting `DUPLICATES_DETECTED` again.** Reusing the same test email address repeatedly re-triggers Salesforce's Lead duplicate rule (matches primarily on Email, regardless of name). Workaround for testing: use a Gmail `+alias`, e.g. `eggvina+test1@gmail.com` — Gmail ignores the `+part` so it still lands in the real inbox, but Salesforce sees it as a different address and won't flag a duplicate.
+
+3. **Ruled out (not the cause):** Deliverability → Access Level was already "All Email," not restricted. This org's Deliverability page in this release doesn't show the classic layout at first glance — the Access Level dropdown is at the very top, easy to miss if you land mid-page.
+
+4. **Root cause of silent (no-fault) delivery failure — traced via Salesforce CLI, not the UI.** Retrieved the flow's actual saved metadata directly (`sf project retrieve start -m "Flow:ContactForm" -o portfolio`) and inspected the XML rather than continuing to guess from screenshots. Found that **both** Send Email actions had a completely empty `recipientAddresses` parameter, and no `senderAddress` set at all — despite `senderType` being switched to `OrgWideEmailAddress` in the UI. The "Org-Wide Email provided is not valid" fault and the later "ran fine but nothing arrives" symptom were two different faces of the same underlying gap: sender and recipient are **separate fields** in the action's config panel ("Configure Sender Details" vs "Configure Recipient Details"), and it's easy to fill in one section and assume the other carried over.
+   - **Fix:** in each Send Email action, fill in **both** sections:
+     - Email_to_Guest → Recipient Addresses: `{!Email.value}` (or the equivalent "Contact Form > Email > Value" resource picker entry) · Sender Type: OrgWideEmailAddress · Sender Email Address: the verified org-wide address
+     - Email_to_Me → Recipient Addresses: literal `eggvina@gmail.com` · same sender config
+   - Org-Wide Email Address used: created via Setup → Organization-Wide Addresses, `eggvina@gmail.com`, "Allow All Profiles to Use this From Address" checked (needed since Guest User has no address of its own), then verified by clicking the confirmation link Salesforce emails to that address.
+
+5. **Final gotcha: Save ≠ Activate.** Editing an already-Activated flow creates a new version on Save, but that new version only takes effect once separately **Activated** — otherwise guests keep running the old (broken) version indefinitely while Flow Builder's canvas shows your fixes looking correct. If a fix "doesn't seem to take," check the flow's version history for which version number is actually marked Active before troubleshooting further.
+
+**CLI note for future debugging:** `sf project retrieve start -m "Flow:ContactForm"` does not reliably pull whichever version is currently Active — it kept returning stale/empty values even after the live site was confirmed working via real end-to-end testing. Trust actual behavior (real test submissions, real emails arriving) over this retrieve command when the two disagree. The CLI retrieve was still genuinely useful for the earlier diagnosis (finding the empty recipient/missing sender fields no screenshot had surfaced) — just don't rely on it as a final confirmation step.
+
+**End state: Contact Me flow fully working** — guest can access the page, submit the form, a Lead is created, and both the guest confirmation email and the internal notification email arrive.

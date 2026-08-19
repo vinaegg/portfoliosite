@@ -1,0 +1,11 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "salesforce-experience-portfolio-site",
+  "namespace": "",
+  "sourceApiVersion": "61.0"
+}
