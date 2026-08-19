@@ -169,3 +169,11 @@ With the flow now rendering and Lead creation working, both Send Email actions s
   ```
 - **Important distinction learned:** changing My Domain only updates the Salesforce *login* URL (`.my.salesforce.com`). The published Experience Cloud site's public URL (`.my.site.com`) is separate and does NOT update automatically — as of this session it was still showing the old `orgfarm-a6430190d2-dev-ed...my.site.com` domain after the My Domain rename.
 - Next: check Setup → Quick Find → **"Domains"** (plural, different page from "My Domain") for a new entry matching the new name — may need manual **Activate**, and provisioning can reportedly take several hours. Not yet confirmed working — pick this up next session.
+
+## 2026-08-19 — Certifications & Superbadges carousel: using CMS instead of the default Carousel
+
+- **Gotcha:** the default "Carousel" component in Experience Builder's component panel is Einstein's *Recommendation Carousel* — not meant for static content like certification badges. Use **Salesforce CMS** instead: build a CMS Collection, then drop a CMS Collection component into Builder with Carousel as the display layout.
+- Steps so far (in progress):
+  1. System Administrator profile → enabled/unhid **CMS Workspaces** and **CMS Channels** so they're accessible (not visible by default)
+  2. Also enabled the **Digital Experiences Home** tab
+  - More steps to follow as this gets built out.
