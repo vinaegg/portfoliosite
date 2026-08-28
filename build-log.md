@@ -190,3 +190,147 @@ With the flow now rendering and Lead creation working, both Send Email actions s
 **Pages remaining:** About Me, Projects.
 **Next session:** add Agentforce as a chat/omnichannel widget on the site, grounded on Vina's CV + basic info (Knowledge Articles / Data Cloud, per the earlier org-type research), with guardrails configured. This is the last major feature from the original scope — see README.md "Agentforce agent" section.
 **Also still open:** domain rename propagation (see 2026-08-19 "Domain rename: in progress" entry above) — check Setup → Domains for activation status when picking this back up.
+
+## 2026-08-24 — Agentforce build started: agent authoring vs. deployment are separate steps
+
+Started building the site's Agentforce agent using Agentforce Studio's own conversational agent-builder (the "Agentforce development agent" you talk to inside Setup to draft an Agent Script, distinct from the portfolio-facing agent being built).
+
+**Prompt given:** "I want to build an assistant for my portfolio site that can answer guest's question about me grounded by my CV as guardrails."
+
+**Proposed agent structure (draft, not yet confirmed/implemented):**
+- **Name:** Vina_s_assistant
+- **Welcome message:** "Hi! I'm the assistant for this portfolio. Feel free to ask me about the owner's background, skills, experience, education, or projects — I'm here to help."
+- **System instructions:** Act as a knowledgeable, friendly representative of the portfolio owner. Stay grounded in CV content; never invent details not present.
+- **Variables:** 5 existing/default (EndUserId, RoutableId, ContactId, EndUserLanguage, VerifiedCustomerId), unchanged.
+- **Subagents (4):**
+  1. `agent_router` (start agent) — greets the user, routes by intent: skills/experience/work history/background/education/projects/contact-availability → `profile_qa`; unrelated questions → `off_topic`; unclear intent → `ambiguous_question`
+  2. `profile_qa` — answers grounded in CV content (no actions; CV text goes into the instructions as a knowledge block placeholder — has to be pasted in manually). Guardrails: never fabricate details not in the CV; if a detail's missing, say so honestly; stay warm/professional as a representative of the owner.
+  3. `off_topic` — polite redirect for questions unrelated to the owner.
+  4. `ambiguous_question` — asks clarifying questions when intent is vague.
+- **Actions:** 0 custom actions — CV grounding is instruction-embedded text, not a Knowledge Article/Data Cloud lookup (a simpler approach than the Data Cloud/Knowledge Article grounding originally scoped in README.md — worth deciding which approach to actually use before implementing).
+
+**Important scope clarification (asked before implementing, confirmed by the Agentforce builder):** the Agent Script builder tool only authors/compiles the agent's logic — it does **not** deploy or publish, configure Omnichannel routing/queues, set up an Embedded Service Deployment (the chat widget), or wire the Messaging Channel. Those are separate manual steps in the org:
+1. Deploy the agent (Agentforce CLI or Agent Builder)
+2. Create a **Messaging for In-App and Web** channel
+3. Set up an **Embedded Service Deployment** and embed the generated snippet in the portfolio site's HTML
+4. Configure **Omnichannel** to route conversations from that channel to the agent
+
+**Status:** structure proposed, not yet confirmed/implemented. CV content not yet pasted in. Deployment/channel/embed steps not started.
+
+## 2026-08-24 — Knowledge Article content drafted + full build plan
+
+**CV updated.** Vina supplied a newer CV export (`VinaEggCore2CV.pdf`, saved in the EGG EA repo's `projects/CVs/`). Content is materially the same as the existing `V_Egg_CV_core.md` (already includes this exact project as a listed project — see its Projects section), with one correction applied: career break is **11 years, Jan 2014 – Sep 2025** (was previously logged as 12 years / Dec 2013). `V_Egg_CV_core.md` updated to match.
+
+**Knowledge Article content drafted.** 13 articles written and saved to this repo's `knowledge/` folder (`01-summary.md` through `13-contact.md` — see `knowledge/README.md` for the full index). Each file is ready to copy title+body directly into a Knowledge Article in Setup. Deliberately excludes phone number and birthdate (on the CV, but no reason for a public chatbot to recite them) — keeps email + LinkedIn since those are meant to be public contact points.
+
+**Decision: grounding via Data Cloud Data Library + Knowledge Articles**, not the pasted-CV-into-instructions approach the Agentforce Studio builder first proposed on 2026-08-24 above. This matches the original README scope and the 2026-08-17 org-type research (Agentforce Developer Edition was specifically chosen to support Data Cloud). The `profile_qa` subagent from the earlier draft will need a knowledge-search action wired to the Data Library, instead of (or in addition to) instruction text.
+
+**Full build plan (not yet executed — org session (`portfolio` alias) needs re-auth first, see 2026-08-19 domain rename entry for the login command pattern, re-point at current My Domain):**
+
+1. **Create the Knowledge Articles**
+   - Setup → Quick Find → "Knowledge" → enable Knowledge if not already (this org may need Salesforce Knowledge turned on — check first, it's a separate feature from Data Cloud/Agentforce)
+   - Create 13 Knowledge Articles, one per file in `knowledge/`, using the article's `#` heading as Title and the rest as Body
+   - Publish each article (draft articles won't be indexed for grounding)
+
+2. **Create/confirm a Data Cloud Data Library and ingest the Knowledge Articles**
+   - Setup → Quick Find → "Data Cloud" → set up a Data Library (or confirm one already exists from earlier Data Cloud enablement)
+   - Connect Knowledge as a data source into that Data Library, map it to index the 13 published articles
+   - Exact path may differ from expectation here — this is the first time this org's Data Cloud config is being touched since the 2026-08-17 enablement; document the actual working path once found, same as every other gotcha in this log
+
+3. **Ground the agent on that Data Library**
+   - In Agentforce Studio / Agent Builder, add a **Knowledge/Data Library retrieval action** to the `profile_qa` subagent (from the 2026-08-24 draft above), pointing at the new Data Library — this replaces the placeholder "paste CV text into instructions" approach
+   - Keep the guardrails already drafted (never fabricate, admit when info isn't in the CV, stay warm/professional)
+   - Confirm/finalize the rest of the draft structure (`agent_router`, `off_topic`, `ambiguous_question`) — was proposed but not yet confirmed with "Yes"/"Proceed"
+
+4. **Deploy the agent**
+   - Via Agentforce Studio's deploy/activate action once the structure above is confirmed
+
+5. **Create a Messaging for In-App and Web channel**
+   - Setup → Quick Find → "Messaging Channels" (or similar — verify exact label live) → New → Messaging for In-App and Web
+   - Attach the deployed agent as the channel's routing target (this is the Omnichannel wiring — routes conversations from this channel to the agent instead of a human queue, or blends both)
+
+6. **Set up the Embedded Service Deployment + embed on the site**
+   - Setup → Quick Find → "Embedded Service" → New Deployment, linked to the Messaging channel above
+   - Salesforce generates a JS snippet
+   - Embed that snippet on the Experience Cloud site — likely via Experience Builder's page-level "Custom Head Markup" / Settings → Advanced, or a Theme-level script include; confirm the actual working option live (LWR sites have historically been fussier about custom script injection than Aura sites — flag if this becomes a gotcha)
+
+7. **Test end-to-end as a guest** (same discipline as the Contact Me flow build: test logged out/incognito, not just as System Administrator — guest-access gotchas have bitten this project before, see 2026-08-19 entries)
+
+**Next session:** start at step 1 once the `portfolio` org alias is re-authenticated.
+
+## 2026-08-24 — Agent built and activated; researched the embed process
+
+**Agent done.** Vina built and activated the agent directly in Agentforce Studio's own agent-builder (not via the manual topic/action drafting planned above), grounded on her CV. Live under the name **"Vina's assistant."** Knowledge Article/Data Cloud plan above was superseded by whatever grounding method Agentforce Studio's builder used internally — worth checking later which one it actually picked (Data Library vs. instruction text) if it matters for the "demonstrates Data Cloud skill" portfolio narrative, since her CV/Projects bullet specifically claims Data Cloud Data Library grounding.
+
+**Researched current (Aug 2026) process for embedding an agent into an LWR Experience Cloud site.**
+
+**Correction:** initially thought there was a "simple path" — enable "Agentforce (Beta)" in Digital Experiences Settings, drag a native Agent component onto the page. Verified against Salesforce Help (`experience.exp_cloud_agent_exp_builder.htm`) that this is wrong: **"Agentforce for Experience Builder (Beta)" is an internal authoring assistant that helps draft Text Block copy while building the site — not a visitor-facing chat widget.** There is no shortcut around the Omni-Channel/Messaging Channel/Embedded Service route below — it's the only way to get a visitor-facing agent onto an Experience Cloud site. Good news: it also happens to match the Omni-Channel/Enhanced Messaging claim already on Vina's CV and this project's README, so no tradeoff to weigh here.
+
+**The only path:**
+
+1. **Prerequisite:** Setup → Omni-Channel Settings → confirm Omni-Channel is enabled (should already be, from earlier org setup).
+2. **Routing Configuration:** Setup → Routing Configurations → New. Name it, set Routing Model = Priority, set a capacity unit. Must exist *before* the queue.
+3. **Queue:** Setup → Queues → New. Under Supported Objects, add **Messaging Sessions** (required for agent chat — easy to miss). Add yourself as a queue member. Attach the Routing Configuration from step 2.
+4. **Omni-Channel Flow:** Setup → Flows → New → type = **Omni-Channel Flow**. Add a **Route to Work** element:
+   - Record ID: new Text resource `recordId`, available for input
+   - Service Channel: **Messaging for In-App and Web**
+   - Route To: **Agent**
+   - Agent: Vina's assistant
+   - Fallback Queue: the queue from step 3
+   Save and **Activate**.
+5. **Messaging Channel:** Setup → Messaging Settings → New Channel:
+   - Channel Type: **Enhanced Chat**
+   - Deployment: **Web**
+   - Domain: current My Domain URL (Setup → "My Domain")
+   - Routing Type: **Agent** → select Vina's assistant
+   - Fallback Queue: from step 3
+6. **Embedded Service Deployment:** auto-created when the Messaging Channel is saved. Setup → Embedded Service Deployments → open it → **Switch to V2** (modern branded chat UI, not the old basic text widget) → publish.
+7. **Add to the site:** Experience Builder → search components for **"Embedded Messaging"** → drag onto the page (likely a global/header region so it shows site-wide, matching the README's "site-wide feature" scope) → select the Messaging Channel from step 5 → Publish.
+8. **Test as guest** (incognito) — this org has a track record of guest-permission gotchas (see the Contact Me flow saga, 2026-08-19 entries), so don't trust a logged-in-as-admin test alone.
+
+**Not yet executed** — pending: (a) confirm what grounding the Agentforce Studio builder actually used, (b) re-auth the `portfolio` CLI alias if any of this needs CLI verification, (c) walk through steps 1–8 live and log any gotchas the same way as every other feature in this file.
+
+## 2026-08-24 — Steps 1–4 walked through live
+
+- **Routing Configuration** created: "Vina Portfolio Routing", Priority... actually **Routing Model = Most Available** (not Priority as the source article said — this org's UI offered Least Active / Most Available / External Routing, no "Priority" option existed). Overflow Assignee = Vina Egg (the human fallback, not the `EinsteinServiceAgent User` system user).
+- **Queue** created: "Vina Portfolio Fallback Queue". Supported Objects = Messaging Session. Member = Vina Egg only (excluded EinsteinServiceAgent User, Integration User, Security User, OrgFarm EPIC — all system/unrelated users).
+- **Omni-Channel Flow** "Portfolio Agent Routing" built. Gotcha: the `recordId` variable couldn't be created inline from the Route to Work element's "Record ID Variable" field — that inline "New Resource" only offers Text Template, not Variable. Had to create it via the Toolbox panel's own "New Resource" button instead (Variable, Text, Available for input), then select it from the element field afterward.
+  - Route to Work config: Service Channel = "Messaging" (this org's picker just shows the umbrella channel category, not a literal "Messaging for In-App and Web" string — that specificity comes later in the actual Messaging Channel record). Route To = **Agentforce Service Agent** (not plain "Agent" — that dropdown has 6 options: Queue, Agent, Skills, Enhanced Bot, Agentforce Service Agent, Agentforce Employee Agent; Service Agent is correct for public/external site visitors, Employee Agent is for internal-only use). Agentforce Service Agent = Vina's assistant. Fallback Queue = Vina Portfolio Fallback Queue.
+- **Messaging Channel:** first attempt hit a generic **"Messaging Channel Creation Failed. Something went wrong."** modal. Retried and it went through — transient, same pattern as the 2026-08-19 "CSS Error" gotcha on first publish. Channel Type = Enhanced Chat, sub-tab "In-App and Web". Channel Name = "Vina's Assistant". Omni-Channel Routing section: Routing Type = Agentforce Service Agent, Agentforce Service Agent = Vina's assistant, Fallback Queue = Vina Portfolio Fallback Queue. Left all optional sections (User Verification, Chat Button Visibility, Session-Based Chat, Attachments, Transcript Downloads, Fallback Message, Abandoned Chats, reCAPTCHA, Queue Wait Time, Automated Responses, Opt-Out settings) at defaults.
+
+**Next:** Step 5, Embedded Service Deployment — should auto-generate from the Messaging Channel above; open it, switch to V2, publish.
+
+## 2026-08-24 — Step 5 done, then a real gotcha found before step 6: site is Aura, not LWR
+
+- **Step 5 done.** Messaging Channel creation initially failed with a generic error, retried successfully. Deployment auto-created; clicked Switch to V2, then Switch & Publish. Confirmed via research this converts the existing deployment in place rather than creating a duplicate — don't run V1 and V2 live on the same domain simultaneously, they conflict.
+- **Digital Experiences → All Sites now shows two entries.** `ESW_Vina_s_Assistant_...` (Framework: Lightning Web Runtime, tagged "Enhanced") is expected — Salesforce auto-generates this hidden site to host the Embedded Service widget's runtime whenever a Messaging deployment is created. Not a duplicate of the real site, nothing to configure on it.
+- **Real finding: the actual "portfolio site" shows Framework = Aura**, not LWR. Root cause: the **"Customer Portal" template** picked on 2026-08-17 (build log's very first Digital Experiences setup entry) is an Aura-based template, not one of the LWR templates ("Build Your Own (LWR)" / "Microsite (LWR)"). This went unnoticed for the whole build so far because none of the earlier features (Flow, CMS carousel, header/footer nav) required LWR — Agentforce is the first thing that does.
+- **Resolution — no site rebuild needed.** The LWR-only drag-and-drop "Embedded Messaging" component (the step 6 plan from earlier) isn't the only embed method. The classic Embedded Service JS snippet ("Get Code" from the deployment) is framework-agnostic — designed to embed on any website — and should work on this Aura site via Experience Builder → Settings → Advanced → Head Markup/Header Script. Confirmed legacy Chat (retired Feb 2026) is a different, unrelated product from Enhanced Chat/Messaging — no conflict there.
+- **Revised step 6 (not yet executed):** Get Code from the V2 deployment → paste into the Aura site's head markup via Experience Builder Settings → Advanced → publish → test as guest/incognito. Exact field name not yet confirmed live in this org — will document once found, per this file's usual practice.
+
+## 2026-08-24 — Correction: found a native embed component after all; Domain field was wrong
+
+- **Correction to the "Aura needs manual snippet" assumption above:** turns out there IS a component in Experience Builder that lets the messaging widget be embedded directly (no manual snippet/head-markup needed) — worked in Builder preview. So the Aura-vs-LWR distinction may not have blocked the native component route after all; needs a clearer look at exactly which component this was next session.
+- **Bug found: widget worked in Experience Builder preview but didn't appear after Publish.** Root cause (two-part fix, not yet confirmed working):
+  1. **Wrong value in the Messaging Channel's "Domain" field.** Earlier guidance in this log (step 4, "Domain: your current My Domain URL") was **wrong** — confirmed via research the field should be the Experience Cloud **site's own public domain** (from Setup → Digital Experiences → Settings), not the org's My Domain login URL. These are different URLs and only one is what public visitors' browsers actually load the page from.
+  2. **Missing CORS entry.** The site's domain also needs to be explicitly added at Setup → CORS → New (with `https://` prefix) — likely the actual reason the widget silently no-ops for real visitors even after the Domain field is fixed, since the browser blocks the cross-origin request without it.
+- **Also still tangled up with the unresolved 2026-08-19 domain rename** — need to confirm which URL (`orgfarm-a6430190d2-dev-ed...` or `vinaegg-dev-ed...`) is actually the live published site's domain before setting the Domain field and CORS entry, otherwise this fix targets the wrong URL too.
+- **Not yet confirmed fixed** — pending: update Domain field, add CORS entry, republish, retest on the actual live published URL (not Builder preview).
+
+## 2026-08-24 — Domain field on an existing Messaging Channel is not editable, and channels can't be deleted either
+
+- **No "Edit" option found on the "Vina's Assistant" channel to fix the Domain field.** Checked whether it was a missing Permission Set License (a Salesforce KB article — id 000380773 — describes exactly this symptom as caused by a missing "Messaging User" PSL) — ruled out, "Enhanced Chat User" PSL (this release's likely renamed equivalent) was already assigned to Vina Egg's user.
+- **Tried to delete the channel to recreate it correctly instead — also not possible.** Confirmed via research this is a known, current Salesforce platform limitation: Messaging Channels cannot be deleted through the UI, and per Salesforce's own IdeaExchange (an open idea requesting this capability), not reliably even via Salesforce Support. Not specific to this org.
+- **Workaround (standard practice for this Salesforce limitation): leave the broken channel in place (deactivated if possible) and create a second new channel with the correct Domain from the start.** Plan: deactivate "Vina's Assistant" if a Deactivate option exists (separate from Delete), then Setup → Messaging Settings → New Channel again, same config as the original (Enhanced Chat, Deployment = Web, Routing Type = Agentforce Service Agent → Vina's assistant, Fallback Queue = Vina Portfolio Fallback Queue), named distinctly (e.g. "Vina's Assistant Web") to avoid confusion with the dead first one. Domain field this time = the actual Experience Cloud site domain from Digital Experiences → Settings (not My Domain — see correction above).
+- Step 3 (Omni-Channel Flow) should not need rework — it routes by Service Channel category ("Messaging") + Agent + Queue, not by a reference to the specific broken channel record.
+- Step 5 (Embedded Service Deployment, Switch to V2) and the Experience Builder embed component will need to be redone pointing at the new channel once it exists.
+- **Not yet executed** — pending the exact site domain value from Digital Experiences → Settings.
+
+## 2026-08-24 — Actual root cause found: CSP frame-ancestors, not Domain/CORS
+
+- Turned out the channel's Domain field was already correct all along (matched the live portfolio site URL) — the earlier "wrong domain" theory was a red herring. Added `https://vinaegg-dev-ed.develop.my.site.com` to CORS anyway (harmless, possibly still needed for other API calls), but the widget still didn't render on the live published site or in incognito after doing so.
+- **Real root cause, found via browser console:** a Content Security Policy `frame-ancestors` violation. The chat widget loads inside an iframe pointing at the auto-generated `ESW_Vina_s_Assistant_...` site (the hidden site Salesforce provisions to host the widget — see the 2026-08-24 "two sites" entry above). That ESW site's CSP only allowlists Salesforce's own domains as valid frame-ancestors (`*.vinaegg-dev-ed.develop.my.salesforce.com`, `vinaegg-dev-ed--c.develop.vf.force.com`) — the actual portfolio site domain wasn't on that list, so the browser blocked the iframe outright. This is a completely different mechanism from CORS (CORS governs XHR/fetch; frame-ancestors governs iframe embedding) — worth remembering next time an "embed doesn't show up" bug appears, check both.
+- **Fix (not yet confirmed working):** Setup → Sites (classic, under User Interface — not Digital Experiences) → open `ESW_Vina_s_Assistant_...` → set Clickjack Protection = "Allow framing by trusted sites only" → add the portfolio site's domain under "Trusted Domains for Inline Frames" → Save.
+- **Lesson for next time:** "works in Builder/preview but not on the live published site" is now a 3-for-3 pattern in this project (Contact Me flow guest access, tile images guest access, now this CSP issue) — always suspect a security/access layer that only applies outside the authenticated admin context, and go straight to incognito + browser console rather than iterating on the feature config itself.
+
+Sources: [SFDC Developers — Publish Agentforce to Experience Cloud](https://sfdcdevelopers.com/2025/09/17/how-to-publish-an-agentforce-agent-to-experience-cloud-step-by-step-guide/), [JetBI — Agentforce in Experience Cloud](https://jetbi.com/blog/integrating-agentforce-experience-cloud-portals), [SalesforceBolt — Deploy Agentforce Agent + Experience Cloud (Aug 2026)](https://www.salesforcebolt.com/2026/08/deploy-agentforce-agent-react-slack-experience-cloud-salesforce.html)
