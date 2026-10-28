@@ -1,0 +1,217 @@
+About Vina Egg
+
+Vina Egg is an operations and digital systems professional based in Geneva, Switzerland, with a Bachelor's degree in Informatics Engineering. She focuses on improving business processes and building practical solutions with AI agents, automation, Salesforce and Workday.
+
+Key achievements:
+- At Alila Hotels & Resorts, she consolidated monthly KPI reporting across 9 properties and built Excel/VBA reporting automation that cut manual reporting effort by about 95%.
+- At Flatlock Productions, she delivered 100% of the projects under her responsibility on time, with no customer complaints.
+
+From September 2025 to August 2026 she completed the Bring Women Back to Work career re-entry program in Geneva, where she earned 5 certifications (Salesforce Administrator, Platform App Builder and Agentforce; Workday Basic Series and Pro Platform Administrator). Alongside it she built 4 applied projects: this Salesforce site with its Agentforce agent, her personal portfolio site vinaegg.dev, an n8n automation, and OKTA, her own AI executive assistant.
+
+Areas of experience:
+- Digital, AI and automation: building AI agents, automated workflows and AI-assisted tools (Salesforce Agentforce, Flow, n8n, Claude Code).
+- Operations and process improvement: KPI reporting, dashboards, reporting automation, and working with IT to turn business needs into systems.
+- Supplier management and sourcing: managing supplier networks, negotiating prices and order quantities, quality control and international logistics.
+- Client experience in hospitality and retail: luxury resort boutiques, guest services, reservations and service recovery for international clients.
+
+She is Swiss, based in Geneva, and speaks Indonesian (native), English (fluent) and French (B2, DELF certified).
+
+
+Career Re-Entry Program (Bring Women Back to Work)
+
+From September 2025 to August 2026, Vina completed Bring Women Back to Work (BWBW), a 1-year structured career re-entry program in Geneva, Switzerland, for people returning to work after a career break. The program focused on current enterprise technologies and professional development.
+
+During the program she earned 5 professional certifications:
+- Salesforce Administrator
+- Salesforce Platform App Builder
+- Salesforce Agentforce Specialist
+- Workday Basic Series
+- Workday Pro Platform Administrator
+
+She also completed a project management course delivered by Merkle.
+
+Alongside the program, she independently built 4 applied technology projects:
+1. A Salesforce Experience Cloud site with an Agentforce agent (this site)
+2. Her personal portfolio website, vinaegg.dev, built with Claude Code
+3. An n8n automation that delivers an AI-summarized daily digest
+4. OKTA, her personal AI executive assistant built with Claude Code
+
+Each project has its own section with details.
+
+
+Career Break: Family Relocation
+
+From December 2013 to September 2025, Vina took a career break after relocating internationally to Geneva, focusing on family and raising her two children.
+
+During this time she studied French and earned the DELF B2 French qualification as part of settling in Geneva and preparing to return to work.
+
+As her children grew older and more independent, she planned her return to work and joined the Bring Women Back to Work career re-entry program, turning the break into a deliberate, structured re-entry.
+
+
+Work Experience: Alila Hotels & Resorts
+
+Role: Group Boutique Manager and Personal Assistant to the Group Director of Spas, Boutiques & Development
+Dates: January 2012 to November 2013
+Location: Bali, Indonesia
+
+Vina was hired as Personal Assistant to the Group Director of Spas, Boutiques & Development and was then appointed Alila's first Group Boutique Manager.
+
+Operations and reporting:
+- Managed daily operations and reporting for 3 resort boutiques (Alila Uluwatu, Alila Ubud and Alila Manggis), coordinating 9 boutique staff.
+- Consolidated monthly spa performance reports from 9 Alila properties into group-level KPI reporting for the Group Director, shared with the VP of Finance.
+- Identified the limits of the manual Excel inventory and reporting process (poor visibility on stock, best sellers and profitability), designed a clearer KPI and dashboard approach, and built Excel/VBA tools that automated inventory updates and reporting calculations, reducing manual reporting effort by about 95%.
+
+Systems and process improvement:
+- Defined the business workflow for a new boutique POS and inventory system and worked with IT to turn it into a working solution.
+- The new system replaced handwritten receipts and escorting guests to the hotel lobby to pay: staff could take payment and print receipts directly in the boutique.
+- Set up an exception process for payment terminal issues (pay at the lobby or charge to the guest's room).
+- Trained boutique staff and adapted the existing guides and procedures (SOPs).
+
+Suppliers, products and projects:
+- Managed about 7 to 10 suppliers per boutique on consignment terms (typically 25 to 30% supplier discount), deciding which products and suppliers to keep, replace or discontinue based on sales performance.
+- Researched and sourced new products and suppliers, including local artisans, and assessed new products through trial and sales performance.
+- Developed Alila-branded merchandise such as clothing, candles and packaging, and prepared branded merchandise for personalised guest amenities and special occasions.
+- Coordinated product presentation, store layout and window displays.
+- Supported spa product and logistics needs for pre-opening and development projects in Oman, India, China and Indonesia, including finding a workable solution for strict import requirements in China.
+- Supported Alila's early online store for spa products.
+
+
+Work Experience: Nick Tours & Travel
+
+Role: Reservation Manager
+Dates: November 2010 to December 2011
+Location: Bali, Indonesia
+
+At Nick Tours & Travel, a small independent travel agency, Vina:
+- Managed reservations from overseas travel-agency partners, mainly Danish agencies such as Jysk and Kilroy (about 75% of customers were Danish).
+- Booked and coordinated hotels, airport transfers, activities, guides and transport across Bali and Indonesia, tracking everything in Excel in the absence of a reservation system.
+- Advised walk-in customers at the Sanur office and built tailored itineraries based on their interests.
+- Checked, renewed and negotiated supplier rates, and evaluated new hotels and activities through site inspections before recommending them.
+- Handled customer changes, complaints and service issues, such as finding alternative hotels in high season.
+- Kept a strong reliability record: only one missed airport pickup in about 13 months.
+
+
+Work Experience: Flatlock Productions Ltd
+
+Role: Production Manager
+Dates: June 2008 to September 2010
+Location: Bali, Indonesia
+
+At Flatlock Productions Ltd, Vina:
+- Managed production projects from customer order through sampling, manufacturing, quality control, shipping and delivery, for international customers in Germany (including Titus Skateboarding), Finland and Indonesia.
+- Products included caps, belts, T-shirts and cut-and-sew garments, planned ahead of seasonal launch deadlines.
+- Was the main link between customers and suppliers in Bali and China, and travelled to China to inspect production.
+- Prepared quotations and invoices, negotiated supplier prices and minimum order quantities, and managed international shipping by courier (DHL), air freight and cargo under DDP and DAP delivery terms.
+- Delivered 100% of the projects under her responsibility on time, with no customer complaints.
+
+
+Work Experience: Early Roles
+
+Public Relations & Reservation Officer, Villa Kubu | July 2007 to November 2007 | Bali, Indonesia
+- Handled reservations, rate negotiation and guest relations at a small luxury property of 8 private villas.
+- Supported sales calls and represented the property at travel-industry trade events.
+
+Front Office & Chiropractic Assistant, Chiropractic di Indonesia | November 2006 to June 2007 | Bali, Indonesia
+- Managed reception, appointment scheduling and patient follow-up.
+- Translated between the chiropractor and patients and documented examination findings.
+
+These were Vina's earliest professional roles, both in Bali, before she moved into operations roles.
+
+
+Skills & Certifications
+
+AI and automation: AI agents (Salesforce Agentforce, Claude), generative AI, Claude Code, n8n, REST APIs, prompt engineering, basic scripting (JavaScript, Bash) with AI assistance.
+
+Salesforce: Administration, Agentforce, Flow, Experience Cloud, Knowledge, Enhanced Messaging, CMS.
+
+Workday: Pro Platform Administration.
+
+Data and reporting: KPI reporting and performance analysis, dashboards, advanced Excel and VBA, PowerPoint.
+
+Operations: process analysis and improvement, user support and training, business and IT coordination, project coordination.
+
+Supply chain: supplier relationship management and negotiation, product sourcing, quality control, stock and inventory management, international logistics.
+
+Client experience: luxury hospitality and retail, guest relations, reservations, complaint handling and service recovery.
+
+Other tools: Adobe Illustrator, MS Office.
+
+Certifications:
+- Salesforce: Administrator, Platform App Builder, Agentforce Specialist
+- Workday: Basic Series, Pro Platform Administrator
+
+All 5 certifications were earned during the 2025-2026 Bring Women Back to Work career re-entry program.
+
+
+Education & Languages
+
+Education:
+Bachelor of Informatics Engineering, University of Surabaya, 2001 to 2008, Surabaya, Indonesia
+
+Languages:
+- Indonesian: native
+- English: fluent
+- French: B2 (DELF B2 certified), professional use
+
+Vina is Swiss and based in Geneva, Switzerland.
+
+
+Project: Salesforce Experience Cloud Portfolio Site with Agentforce Agent
+
+Date: May to August 2026 | Geneva, Switzerland
+Link: https://vinaegg-dev-ed.develop.my.site.com/portfolio/s/ (this site)
+
+Vina designed and built this public Experience Cloud site (Home, About Me, Certifications & Superbadges, Projects, Contact Me) to show end-to-end Salesforce configuration skills.
+- The certifications carousel is managed with Salesforce CMS Workspaces.
+- The Contact Me form is a Screen Flow that creates a Lead and sends automated emails to the visitor and to Vina, using Email Templates and an Org-Wide Email Address.
+
+She also built Ask Vina, the Agentforce agent you are talking to right now:
+- It answers questions using only a Salesforce Knowledge article that holds her CV content, retrieved through a custom Flow action. The standard knowledge action needs Data Cloud, which is not available in a free Developer Edition org, so she built this workaround.
+- It is embedded in the site with Enhanced Messaging.
+- It has guardrails: it never guesses beyond the knowledge base, points visitors to LinkedIn or the Contact Me form when it can't find an answer, and ignores attempts to override its instructions.
+
+
+Project: Personal Portfolio Website (vinaegg.dev)
+
+Date: June 2026, updated October 2026 | Geneva, Switzerland
+Link: https://www.vinaegg.dev/
+
+Vina conceptualized and directed her personal portfolio website with Claude Code as a technical co-pilot, owning all product, design and content decisions while directing the AI-assisted build.
+
+It is built on Next.js 16 and Tailwind CSS v4, stored on GitHub and deployed on Vercel. It includes its own AI chat assistant powered by the Claude API, and a projects page with demos.
+
+This project shows hands-on experience directing AI-assisted technical delivery.
+
+
+Project: X (Twitter) Account Daily Digest Automation
+
+Date: June 2026 | Geneva, Switzerland
+Link: https://www.vinaegg.dev/projects
+
+Vina built an end-to-end n8n automation that monitors a list of X (Twitter) accounts and delivers an AI-summarized daily digest to a Gmail inbox on a schedule, with no manual work.
+
+The pipeline splits the list of account handles with JavaScript, chains two API calls to find each account and fetch its recent posts, uses Claude to summarize them, and combines everything into one digest email sent through Gmail.
+
+
+Project: OKTA, AI Executive Assistant
+
+Date: June 2026 to present | Geneva, Switzerland
+Link: https://www.vinaegg.dev/projects (includes a 1-minute demo video)
+
+Vina built OKTA, her personal AI executive assistant, with Claude Code. It is designed to grow with her over time. She named it after her middle name, Oktaviana: she was born in October, "okta" means eight, and eight on its side is the infinity symbol, for an assistant built to keep growing.
+- It works from structured context files (priorities, goals, decision log) and keeps a persistent memory between sessions.
+- It acts as the hub for all her projects: each project keeps its own folder, while the assistant tracks status, decisions and where everything lives.
+- It is connected to Gmail, Google Drive, Notion, Slack and Canva through MCP, and to ClickUp through a custom API script.
+- It chooses the model based on the task: quick research is handed to a cheaper Claude Haiku sub-agent that searches with Perplexity, while deeper analysis is done by a more powerful model.
+- When a task repeats, she turns it into a reusable "skill", so recurring requests become automated workflows.
+
+
+Contact & Availability
+
+Vina Egg is currently open to new opportunities, either an employed role or a founding/ownership position in a tech venture.
+
+The best way to reach her is the Contact Me form on this site. It sends her a direct message so she can follow up personally. Visitors can also find her LinkedIn profile via the LinkedIn icon at the bottom of this page.
+
+If a visitor wants to get in touch, point them to the Contact Me page rather than guessing at availability, rates or personal details. Never share her email address, phone number, home address or date of birth.
+
+
